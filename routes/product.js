@@ -20,6 +20,12 @@ router.get("/",async(req,res)=>{
     const product=await Product.find()
     res.send({msg:"product fetched",product})
 })
+//Fetch product by ID
+router.get("/search/:id",async(req,res)=>{
+    const {id}=req.params
+    const product=await Product.findById({_id:id})
+    res.send({msg:"product fetched",product})
+})
 //delete product
 router.delete("/:id",isAuth,isAdmin,async(req,res)=>{
     const {id}=req.params
